@@ -1,0 +1,42 @@
+{
+  "known_sdk_paths": [
+    "D:\\ti\\mspm0_sdk_2_08_00_03",
+    "C:\\ti\\mspm0_sdk_2_08_00_03",
+    "D:\\ti\\mspm0_sdk*",
+    "C:\\ti\\mspm0_sdk*"
+  ],
+  "sdk_env_vars": ["MSPM0_SDK_PATH", "MSPM0_SDK_HOME"],
+  "sdk_dir_pattern": "mspm0_sdk_*",
+  "sdk_version_regex": "mspm0_sdk_(\\d+_\\d+_\\d+_\\d+)",
+  "required_sdk_version": "2.08.00.03",
+  "sdk_validation_files": [
+    "tools/keil/syscfg.bat",
+    "source/ti/driverlib/driverlib.h",
+    "source/ti/devices/msp/msp.h"
+  ],
+  "known_sysconfig_paths": [
+    "D:\\ti\\sysconfig_1.25.0",
+    "C:\\ti\\sysconfig_1.25.0",
+    "D:\\ti\\sysconfig_1*",
+    "C:\\ti\\sysconfig_1*"
+  ],
+  "sysconfig_env_vars": ["SYSCONFIG_PATH"],
+  "sysconfig_dir_pattern": "sysconfig_*",
+  "sysconfig_version_regex": "sysconfig_(\\d+\\.\\d+\\.\\d+)",
+  "required_sysconfig_version": "1.25.0",
+  "sysconfig_validation_files": [
+    "sysconfig_cli.bat",
+    "sysconfig_gui.bat"
+  ],
+  "keil_dirs": [
+    "D:\\keil\\Keil_v5",
+    "C:\\Keil_v5",
+    "D:\\Keil_v5"
+  ],
+  "keil_env_vars": ["KEIL_PATH", "UV4_PATH"],
+  "arm_pack_dirs": [
+    "%LOCALAPPDATA%\\Arm\\Packs",
+    "C:\\Users\\Public\\Arm\\Packs",
+    "C:\\Keil_v5\\ARM\\PACK"
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "default_config": {
+    "cpu_clk": 80000000,
+    "hfx_freq_mhz": 40,
+    "syspll0_freq": 160000000,
+    "hsclk_freq": 160000000,
+    "mfpclk_freq": 80000000
+  },
+  "nodes": {
+    "HFXT": {
+      "description": "External 40MHz crystal oscillator",
+      "properties": {
+        "inputFreq": {"type": "number", "valid": [40], "description": "Crystal frequency in MHz"},
+        "enable": {"type": "bool", "valid": [true, false]},
+        "HFXTStartup": {"type": "number", "valid": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], "description": "Startup time"},
+        "peripheral.$assign": {"type": "string", "valid": ["SYSCTL"]},
+        "peripheral.hfxInPin.$assign": {"type": "string", "valid": ["PA5"]},
+        "peripheral.hfxOutPin.$assign": {"type": "string", "valid": ["PA6"]}
+      }
+    },
+    "LFXT": {
+      "description": "32.768kHz low-frequency crystal",
+      "properties": {
+        "inputFreq": {"type": "number", "valid": [32.768]}
+      }
+    },
+    "EXHFMUX": {
+      "description": "External high-frequency clock mux",
+      "properties": {
+        "inputSelect": {"type": "string", "valid": ["EXHFMUX_XTAL", "EXHFMUX_EXT"]}
+      }
+    },
+    "SYSPLLMUX": {
+      "description": "System PLL input mux",
+      "properties": {
+        "inputSelect": {"type": "string", "valid": ["zSYSPLLMUX_HFCLK", "SYSPLLMUX_EXT"]}
+      }
+    },
+    "PLL_QDIV": {
+      "description": "PLL Q-divider multiplier",
+      "properties": {
+        "multiplyValue": {"type": "number", "valid": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
+      }
+    },
+    "HSCLKMUX": {
+      "description": "High-speed clock mux",
+      "properties": {
+        "inputSelect": {"type": "string", "valid": ["HSCLKMUX_SYSPLL0", "HSCLKMUX_HFCLK"]}
+      }
+    },
+    "HFCLK4MFPCLKDIV": {
+      "description": "HFCLK to MFPCLK divider",
+      "properties": {
+        "divideValue": {"type": "number", "valid": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]}
+      }
+    },
+    "MFPCLKMUX": {
+      "description": "Main flash programming clock mux",
+      "properties": {
+        "inputSelect": {"type": "string", "valid": ["MFPCLKMUX_HFCLK", "MFPCLKMUX_SYSPLL0"]}
+      }
+    },
+    "UDIV": {
+      "description": "Universal divider",
+      "properties": {
+        "divideValue": {"type": "number", "valid": [1,2,3,4,5,6,7,8]}
+      }
+    },
+    "MFCLKGATE": {
+      "description": "MFCLK gate",
+      "properties": {
+        "enable": {"type": "bool", "valid": [true, false]}
+      }
+    },
+    "MFPCLKGATE": {
+      "description": "MFPCLK gate",
+      "properties": {
+        "enable": {"type": "bool", "valid": [true, false]}
+      }
+    }
+  },
+  "syscfg_js_snippet": {
+    "standard_80mhz": [
+      "const divider2       = system.clockTree[\"HFCLK4MFPCLKDIV\"];",
+      "divider2.divideValue = 10;",
+      "",
+      "const divider9       = system.clockTree[\"UDIV\"];",
+      "divider9.divideValue = 2;",
+      "",
+      "const gate7  = system.clockTree[\"MFCLKGATE\"];",
+      "gate7.enable = true;",
+      "",
+      "const gate8  = system.clockTree[\"MFPCLKGATE\"];",
+      "gate8.enable = true;",
+      "",
+      "const multiplier2         = system.clockTree[\"PLL_QDIV\"];",
+      "multiplier2.multiplyValue = 4;",
+      "",
+      "const mux4       = system.clockTree[\"EXHFMUX\"];",
+      "mux4.inputSelect = \"EXHFMUX_XTAL\";",
+      "",
+      "const mux8       = system.clockTree[\"HSCLKMUX\"];",
+      "mux8.inputSelect = \"HSCLKMUX_SYSPLL0\";",
+      "",
+      "const mux10       = system.clockTree[\"MFPCLKMUX\"];",
+      "mux10.inputSelect = \"MFPCLKMUX_HFCLK\";",
+      "",
+      "const mux12       = system.clockTree[\"SYSPLLMUX\"];",
+      "mux12.inputSelect = \"zSYSPLLMUX_HFCLK\";",
+      "",
+      "const pinFunction4                        = system.clockTree[\"HFXT\"];",
+      "pinFunction4.inputFreq                    = 40;",
+      "pinFunction4.enable                       = true;",
+      "pinFunction4.HFXTStartup                  = 10;",
+      "pinFunction4.peripheral.$assign           = \"SYSCTL\";",
+      "pinFunction4.peripheral.hfxInPin.$assign  = \"PA5\";",
+      "pinFunction4.peripheral.hfxOutPin.$assign = \"PA6\";",
+      "",
+      "const pinFunction6     = system.clockTree[\"LFXT\"];",
+      "pinFunction6.inputFreq = 32.768;"
+    ]
+  }
+}

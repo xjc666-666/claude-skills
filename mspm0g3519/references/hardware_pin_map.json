@@ -1,0 +1,56 @@
+{
+  "fixed_pins": {
+    "OLED": {
+      "peripheral": "SPI0",
+      "interface": "SPI",
+      "mode": "MOTO3",
+      "polarity": 1,
+      "bitrate": 20000000,
+      "sclk": "PB3",
+      "mosi": "PB2",
+      "cs": "PC9",
+      "dc": "PC8",
+      "res": "PB23"
+    },
+    "Keyboard": {
+      "type": "matrix",
+      "rows": {"H1": "PB6", "H2": "PB7", "H3": "PB8", "H4": "PB9"},
+      "columns": {"V1": "PB20", "V2": "PB24", "V3": "PB25", "V4": "PB27"}
+    },
+    "Debug": {
+      "swclk": "PA20",
+      "swdio": "PA19"
+    },
+    "HFXT": {
+      "xin": "PA5",
+      "xout": "PA6",
+      "frequency_mhz": 40,
+      "startup_time": 10
+    }
+  },
+  "reserved_pins": [
+    "PA5", "PA6", "PA19", "PA20",
+    "PB2", "PB3", "PB6", "PB7", "PB8", "PB9",
+    "PB20", "PB23", "PB24", "PB25", "PB27",
+    "PC8", "PC9"
+  ],
+  "reserved_pins_reason": {
+    "PA5": "HFXT HFXIN (40MHz crystal)",
+    "PA6": "HFXT HFXOUT (40MHz crystal)",
+    "PA19": "Debug SWDIO",
+    "PA20": "Debug SWCLK",
+    "PB2": "OLED SPI0 MOSI (hardware-fixed)",
+    "PB3": "OLED SPI0 SCLK (hardware-fixed)",
+    "PB6": "Keyboard H1 (hardware-fixed)",
+    "PB7": "Keyboard H2 (hardware-fixed)",
+    "PB8": "Keyboard H3 (hardware-fixed)",
+    "PB9": "Keyboard H4 (hardware-fixed)",
+    "PB20": "Keyboard V1 (hardware-fixed)",
+    "PB23": "OLED RES (hardware-fixed)",
+    "PB24": "Keyboard V2 (hardware-fixed)",
+    "PB25": "Keyboard V3 (hardware-fixed)",
+    "PB27": "Keyboard V4 (hardware-fixed)",
+    "PC8": "OLED DC (hardware-fixed)",
+    "PC9": "OLED CS (hardware-fixed)"
+  }
+}

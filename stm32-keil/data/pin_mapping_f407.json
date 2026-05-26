@@ -1,0 +1,361 @@
+{
+  "family": "F407",
+  "description": "STM32F407 alternate function pin mapping for commonly used peripherals",
+  "jtag_swd_pins": ["PA13", "PA14", "PA15", "PB3", "PB4"],
+  "pins": {
+    "PA0": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART2", "signal": "CTS", "af": 7},
+      {"peripheral": "USART4", "signal": "TX", "af": 8},
+      {"peripheral": "TIM2", "signal": "CH1", "af": 1},
+      {"peripheral": "TIM5", "signal": "CH1", "af": 2},
+      {"peripheral": "ADC1", "signal": "IN0", "af": null}
+    ]},
+    "PA1": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART2", "signal": "RTS", "af": 7},
+      {"peripheral": "USART4", "signal": "RX", "af": 8},
+      {"peripheral": "TIM2", "signal": "CH2", "af": 1},
+      {"peripheral": "TIM5", "signal": "CH2", "af": 2},
+      {"peripheral": "ADC1", "signal": "IN1", "af": null}
+    ]},
+    "PA2": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART2", "signal": "TX", "af": 7},
+      {"peripheral": "TIM2", "signal": "CH3", "af": 1},
+      {"peripheral": "TIM5", "signal": "CH3", "af": 2},
+      {"peripheral": "TIM9", "signal": "CH1", "af": 3},
+      {"peripheral": "ADC1", "signal": "IN2", "af": null}
+    ]},
+    "PA3": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART2", "signal": "RX", "af": 7},
+      {"peripheral": "TIM2", "signal": "CH4", "af": 1},
+      {"peripheral": "TIM5", "signal": "CH4", "af": 2},
+      {"peripheral": "TIM9", "signal": "CH2", "af": 3},
+      {"peripheral": "ADC1", "signal": "IN3", "af": null}
+    ]},
+    "PA4": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI1", "signal": "NSS", "af": 5},
+      {"peripheral": "SPI3", "signal": "NSS", "af": 6},
+      {"peripheral": "USART2", "signal": "CK", "af": 7},
+      {"peripheral": "DAC", "signal": "OUT1", "af": null},
+      {"peripheral": "ADC1", "signal": "IN4", "af": null}
+    ]},
+    "PA5": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI1", "signal": "SCK", "af": 5},
+      {"peripheral": "TIM2", "signal": "CH1_ETR", "af": 1},
+      {"peripheral": "ADC1", "signal": "IN5", "af": null},
+      {"peripheral": "DAC", "signal": "OUT2", "af": null}
+    ]},
+    "PA6": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI1", "signal": "MISO", "af": 5},
+      {"peripheral": "TIM3", "signal": "CH1", "af": 2},
+      {"peripheral": "TIM8", "signal": "BKIN", "af": 3},
+      {"peripheral": "TIM1", "signal": "BKIN", "af": 1},
+      {"peripheral": "ADC1", "signal": "IN6", "af": null}
+    ]},
+    "PA7": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI1", "signal": "MOSI", "af": 5},
+      {"peripheral": "TIM3", "signal": "CH2", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH1N", "af": 3},
+      {"peripheral": "TIM1", "signal": "CH1N", "af": 1},
+      {"peripheral": "ADC1", "signal": "IN7", "af": null}
+    ]},
+    "PA8": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART1", "signal": "CK", "af": 7},
+      {"peripheral": "TIM1", "signal": "CH1", "af": 1},
+      {"peripheral": "I2C3", "signal": "SCL", "af": 4},
+      {"peripheral": "MCO1", "signal": "OUT", "af": 0}
+    ]},
+    "PA9": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART1", "signal": "TX", "af": 7},
+      {"peripheral": "TIM1", "signal": "CH2", "af": 1}
+    ]},
+    "PA10": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART1", "signal": "RX", "af": 7},
+      {"peripheral": "TIM1", "signal": "CH3", "af": 1}
+    ]},
+    "PA11": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART1", "signal": "CTS", "af": 7},
+      {"peripheral": "CAN1", "signal": "RX", "af": 9},
+      {"peripheral": "TIM1", "signal": "CH4", "af": 1}
+    ]},
+    "PA12": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART1", "signal": "RTS", "af": 7},
+      {"peripheral": "CAN1", "signal": "TX", "af": 9},
+      {"peripheral": "TIM1", "signal": "ETR", "af": 1}
+    ]},
+    "PA13": {"5v_tolerant": true, "jtag_swd": true, "functions": [
+      {"peripheral": "SWD", "signal": "SWDIO", "af": 0}
+    ]},
+    "PA14": {"5v_tolerant": true, "jtag_swd": true, "functions": [
+      {"peripheral": "SWD", "signal": "SWCLK", "af": 0}
+    ]},
+    "PA15": {"5v_tolerant": true, "jtag_swd": true, "functions": [
+      {"peripheral": "JTAG", "signal": "JTDI", "af": 0},
+      {"peripheral": "TIM2", "signal": "CH1_ETR", "af": 1},
+      {"peripheral": "SPI1", "signal": "NSS", "af": 5},
+      {"peripheral": "SPI3", "signal": "NSS", "af": 6}
+    ]},
+    "PB0": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH2N", "af": 1},
+      {"peripheral": "TIM3", "signal": "CH3", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH2N", "af": 3},
+      {"peripheral": "ADC1", "signal": "IN8", "af": null}
+    ]},
+    "PB1": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH3N", "af": 1},
+      {"peripheral": "TIM3", "signal": "CH4", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH3N", "af": 3},
+      {"peripheral": "ADC1", "signal": "IN9", "af": null}
+    ]},
+    "PB2": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "BOOT", "signal": "BOOT1", "af": null}
+    ]},
+    "PB3": {"5v_tolerant": true, "jtag_swd": true, "functions": [
+      {"peripheral": "JTAG", "signal": "JTDO", "af": 0},
+      {"peripheral": "TIM2", "signal": "CH2", "af": 1},
+      {"peripheral": "SPI1", "signal": "SCK", "af": 5},
+      {"peripheral": "SPI3", "signal": "SCK", "af": 6}
+    ]},
+    "PB4": {"5v_tolerant": true, "jtag_swd": true, "functions": [
+      {"peripheral": "JTAG", "signal": "NJTRST", "af": 0},
+      {"peripheral": "TIM3", "signal": "CH1", "af": 2},
+      {"peripheral": "SPI1", "signal": "MISO", "af": 5},
+      {"peripheral": "SPI3", "signal": "MISO", "af": 6}
+    ]},
+    "PB5": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "CH2", "af": 2},
+      {"peripheral": "SPI1", "signal": "MOSI", "af": 5},
+      {"peripheral": "SPI3", "signal": "MOSI", "af": 6},
+      {"peripheral": "CAN2", "signal": "RX", "af": 9}
+    ]},
+    "PB6": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH1", "af": 2},
+      {"peripheral": "I2C1", "signal": "SCL", "af": 4},
+      {"peripheral": "USART1", "signal": "TX", "af": 7},
+      {"peripheral": "CAN2", "signal": "TX", "af": 9}
+    ]},
+    "PB7": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH2", "af": 2},
+      {"peripheral": "I2C1", "signal": "SDA", "af": 4},
+      {"peripheral": "USART1", "signal": "RX", "af": 7}
+    ]},
+    "PB8": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH3", "af": 2},
+      {"peripheral": "TIM10", "signal": "CH1", "af": 3},
+      {"peripheral": "I2C1", "signal": "SCL", "af": 4},
+      {"peripheral": "CAN1", "signal": "RX", "af": 9}
+    ]},
+    "PB9": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH4", "af": 2},
+      {"peripheral": "TIM11", "signal": "CH1", "af": 3},
+      {"peripheral": "I2C1", "signal": "SDA", "af": 4},
+      {"peripheral": "CAN1", "signal": "TX", "af": 9}
+    ]},
+    "PB10": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM2", "signal": "CH3", "af": 1},
+      {"peripheral": "I2C2", "signal": "SCL", "af": 4},
+      {"peripheral": "SPI2", "signal": "SCK", "af": 5},
+      {"peripheral": "USART3", "signal": "TX", "af": 7}
+    ]},
+    "PB11": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM2", "signal": "CH4", "af": 1},
+      {"peripheral": "I2C2", "signal": "SDA", "af": 4},
+      {"peripheral": "USART3", "signal": "RX", "af": 7}
+    ]},
+    "PB12": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "BKIN", "af": 1},
+      {"peripheral": "I2C2", "signal": "SMBA", "af": 4},
+      {"peripheral": "SPI2", "signal": "NSS", "af": 5},
+      {"peripheral": "USART3", "signal": "CK", "af": 7},
+      {"peripheral": "CAN2", "signal": "RX", "af": 9}
+    ]},
+    "PB13": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH1N", "af": 1},
+      {"peripheral": "SPI2", "signal": "SCK", "af": 5},
+      {"peripheral": "USART3", "signal": "CTS", "af": 7},
+      {"peripheral": "CAN2", "signal": "TX", "af": 9}
+    ]},
+    "PB14": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH2N", "af": 1},
+      {"peripheral": "TIM8", "signal": "CH2N", "af": 3},
+      {"peripheral": "SPI2", "signal": "MISO", "af": 5},
+      {"peripheral": "USART3", "signal": "RTS", "af": 7},
+      {"peripheral": "TIM12", "signal": "CH1", "af": 9}
+    ]},
+    "PB15": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH3N", "af": 1},
+      {"peripheral": "TIM8", "signal": "CH3N", "af": 3},
+      {"peripheral": "SPI2", "signal": "MOSI", "af": 5},
+      {"peripheral": "TIM12", "signal": "CH2", "af": 9}
+    ]},
+    "PC0": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "ADC1", "signal": "IN10", "af": null}
+    ]},
+    "PC1": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "ADC1", "signal": "IN11", "af": null}
+    ]},
+    "PC2": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI2", "signal": "MISO", "af": 5},
+      {"peripheral": "ADC1", "signal": "IN12", "af": null}
+    ]},
+    "PC3": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI2", "signal": "MOSI", "af": 5},
+      {"peripheral": "ADC1", "signal": "IN13", "af": null}
+    ]},
+    "PC4": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "ADC1", "signal": "IN14", "af": null}
+    ]},
+    "PC5": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "ADC1", "signal": "IN15", "af": null}
+    ]},
+    "PC6": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "CH1", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH1", "af": 3},
+      {"peripheral": "USART6", "signal": "TX", "af": 8}
+    ]},
+    "PC7": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "CH2", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH2", "af": 3},
+      {"peripheral": "USART6", "signal": "RX", "af": 8}
+    ]},
+    "PC8": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "CH3", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH3", "af": 3},
+      {"peripheral": "USART6", "signal": "CK", "af": 8}
+    ]},
+    "PC9": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "CH4", "af": 2},
+      {"peripheral": "TIM8", "signal": "CH4", "af": 3},
+      {"peripheral": "I2C3", "signal": "SDA", "af": 4}
+    ]},
+    "PC10": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI3", "signal": "SCK", "af": 6},
+      {"peripheral": "USART3", "signal": "TX", "af": 7},
+      {"peripheral": "UART4", "signal": "TX", "af": 8}
+    ]},
+    "PC11": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI3", "signal": "MISO", "af": 6},
+      {"peripheral": "USART3", "signal": "RX", "af": 7},
+      {"peripheral": "UART4", "signal": "RX", "af": 8}
+    ]},
+    "PC12": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI3", "signal": "MOSI", "af": 6},
+      {"peripheral": "USART3", "signal": "CK", "af": 7},
+      {"peripheral": "UART5", "signal": "TX", "af": 8}
+    ]},
+    "PC13": {"5v_tolerant": false, "jtag_swd": false, "functions": [
+      {"peripheral": "RTC", "signal": "TAMPER_OUT", "af": null}
+    ]},
+    "PC14": {"5v_tolerant": false, "jtag_swd": false, "functions": [
+      {"peripheral": "RCC", "signal": "OSC32_IN", "af": null}
+    ]},
+    "PC15": {"5v_tolerant": false, "jtag_swd": false, "functions": [
+      {"peripheral": "RCC", "signal": "OSC32_OUT", "af": null}
+    ]},
+    "PD2": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "ETR", "af": 2},
+      {"peripheral": "UART5", "signal": "RX", "af": 8}
+    ]},
+    "PD12": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH1", "af": 2},
+      {"peripheral": "USART3", "signal": "RTS", "af": 7}
+    ]},
+    "PD13": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH2", "af": 2}
+    ]},
+    "PD14": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH3", "af": 2}
+    ]},
+    "PD15": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "CH4", "af": 2}
+    ]},
+    "PE0": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM4", "signal": "ETR", "af": 2},
+      {"peripheral": "UART8", "signal": "RX", "af": 8}
+    ]},
+    "PE1": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "UART8", "signal": "TX", "af": 8}
+    ]},
+    "PE2": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM3", "signal": "ETR", "af": 2},
+      {"peripheral": "SPI4", "signal": "SCK", "af": 5}
+    ]},
+    "PE3": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI4", "signal": "MISO", "af": 5}
+    ]},
+    "PE4": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "SPI4", "signal": "NSS", "af": 5},
+      {"peripheral": "TIM10", "signal": "CH1", "af": 3}
+    ]},
+    "PE5": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM9", "signal": "CH1", "af": 3}
+    ]},
+    "PE6": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM9", "signal": "CH2", "af": 3}
+    ]},
+    "PE7": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "ETR", "af": 1},
+      {"peripheral": "UART7", "signal": "RX", "af": 8}
+    ]},
+    "PE8": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH1N", "af": 1},
+      {"peripheral": "UART7", "signal": "TX", "af": 8}
+    ]},
+    "PE9": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH1", "af": 1}
+    ]},
+    "PE10": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH2N", "af": 1}
+    ]},
+    "PE11": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH2", "af": 1},
+      {"peripheral": "SPI4", "signal": "NSS", "af": 5}
+    ]},
+    "PE12": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH3N", "af": 1},
+      {"peripheral": "SPI4", "signal": "SCK", "af": 5}
+    ]},
+    "PE13": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH3", "af": 1},
+      {"peripheral": "SPI4", "signal": "MISO", "af": 5}
+    ]},
+    "PE14": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "CH4", "af": 1},
+      {"peripheral": "SPI4", "signal": "MOSI", "af": 5}
+    ]},
+    "PE15": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM1", "signal": "BKIN", "af": 1}
+    ]},
+    "PF0": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "I2C2", "signal": "SDA", "af": 4}
+    ]},
+    "PF1": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "I2C2", "signal": "SCL", "af": 4}
+    ]},
+    "PF6": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM10", "signal": "CH1", "af": 3},
+      {"peripheral": "UART7", "signal": "RX", "af": 8}
+    ]},
+    "PF7": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM11", "signal": "CH1", "af": 3},
+      {"peripheral": "UART7", "signal": "TX", "af": 8}
+    ]},
+    "PF8": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM13", "signal": "CH1", "af": 9}
+    ]},
+    "PF9": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "TIM14", "signal": "CH1", "af": 9}
+    ]},
+    "PG9": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART6", "signal": "RX", "af": 8}
+    ]},
+    "PG14": {"5v_tolerant": true, "jtag_swd": false, "functions": [
+      {"peripheral": "USART6", "signal": "TX", "af": 8}
+    ]},
+    "PH0": {"5v_tolerant": false, "jtag_swd": false, "functions": [
+      {"peripheral": "RCC", "signal": "OSC_IN", "af": null}
+    ]},
+    "PH1": {"5v_tolerant": false, "jtag_swd": false, "functions": [
+      {"peripheral": "RCC", "signal": "OSC_OUT", "af": null}
+    ]}
+  }
+}

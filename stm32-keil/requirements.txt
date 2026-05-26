@@ -1,0 +1,8 @@
+# stm32-keil skill - Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Required for serial data engine (serial_bridge.py, serial_monitor.py)
+pyserial>=3.5
+
+# Required for PDF reference manual queries (pdf_reader.py)
+PyMuPDF>=1.23

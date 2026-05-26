@@ -1,0 +1,136 @@
+{
+  "patterns": [
+    {
+      "id": "undeclared_identifier",
+      "regex": "(?:error|warning):\\s*#20(?:-D)?:\\s*identifier\\s+\"([^\"]+)\"\\s+is\\s+undefined",
+      "confidence": "HIGH",
+      "description": "未声明的标识符 — 缺少 #include 或变量未定义",
+      "fix_strategy": "Search for the identifier in project headers and SPL headers. If found in a header, add the #include. If it's an SPL type (like GPIO_InitTypeDef, USART_InitTypeDef), ensure the correct stm32fxxx.h or peripheral header is included. If it's a function, add an extern declaration or the proper #include."
+    },
+    {
+      "id": "undeclared_function",
+      "regex": "warning:\\s*#223-D:\\s*function\\s+\"([^\"]+)\"\\s+declared\\s+implicitly",
+      "confidence": "HIGH",
+      "description": "函数隐式声明 — 缺少头文件包含",
+      "fix_strategy": "Search project Drive/Include/ and STM32/ for the function name. Add the appropriate #include directive."
+    },
+    {
+      "id": "expected_semicolon",
+      "regex": "error:\\s*#(?:18|65|79|128|146):\\s*expected\\s+['\";]([^'\"]*)['\"]",
+      "confidence": "HIGH",
+      "description": "语法错误 — 缺少分号或括号",
+      "fix_strategy": "Check the line before the error location for a missing semicolon, closing brace, or parenthesis."
+    },
+    {
+      "id": "missing_header",
+      "regex": "error:\\s*#5:\\s*cannot\\s+open\\s+source\\s+file\\s+\"([^\"]+)\"",
+      "confidence": "MEDIUM",
+      "description": "找不到头文件 — 包含路径不正确",
+      "fix_strategy": "Check if the header exists in the project. If yes, add its directory to the include paths in the .uvprojx file. If it's a generated or missing file, create it."
+    },
+    {
+      "id": "multiple_definition",
+      "regex": "error:\\s*#(?:L6200E|L6201E|256):\\s*(?:Symbol|multiple definition of)\\s+\"([^\"]+)\"",
+      "confidence": "MEDIUM",
+      "description": "符号多重定义 — 函数或变量被重复定义",
+      "fix_strategy": "Search all source files for duplicate definitions. Move the definition to a single .c file and use extern in headers. If it's a variable, add 'static' or move to a single compilation unit."
+    },
+    {
+      "id": "unused_variable",
+      "regex": "warning:\\s*#177-D:\\s*variable\\s+\"([^\"]+)\"\\s+was\\s+declared\\s+but\\s+never\\s+referenced",
+      "confidence": "HIGH",
+      "description": "声明但未使用的变量",
+      "fix_strategy": "Remove the unused variable declaration. If it was intended to be used, check for typos in the variable name where it should be referenced."
+    },
+    {
+      "id": "signed_unsigned_mismatch",
+      "regex": "warning:\\s*#(?:188|68)-D:\\s*(?:signed/unsigned mismatch|integer conversion)",
+      "confidence": "LOW",
+      "description": "有符号/无符号类型不匹配",
+      "fix_strategy": "Add an explicit cast or change the variable type to match. Common with enum types being compared to integers."
+    },
+    {
+      "id": "implicit_cast",
+      "regex": "warning:\\s*#(?:69-D|186-D):\\s*(?:integer conversion| pointless comparison)",
+      "confidence": "LOW",
+      "description": "隐式类型转换警告",
+      "fix_strategy": "Add explicit type cast to suppress warning, or change variable types to match."
+    },
+    {
+      "id": "incompatible_redefinition",
+      "regex": "error:\\s*#(?:147|256):\\s*(?:declaration is incompatible|redefinition)",
+      "confidence": "MEDIUM",
+      "description": "类型声明不兼容或重定义",
+      "fix_strategy": "Check if a function declaration in a header matches its definition in the .c file. Check for conflicting type definitions across headers."
+    },
+    {
+      "id": "undefined_symbol_linker",
+      "regex": "error:\\s*#L6218E:\\s*Undefined\\s+symbol\\s+([^\\s]+)",
+      "confidence": "MEDIUM",
+      "description": "链接错误 — 未定义的符号",
+      "fix_strategy": "A function or variable is declared but not defined. Check if the corresponding .c file exists and is included in the project. Add the missing SPL source file to the project, or implement the missing function."
+    },
+    {
+      "id": "not_a_member",
+      "regex": "error:\\s*(?:#(?:132|134|136)|warning:\\s*#(?:132|134|136)):\\s*\"([^\"]+)\"\\s+is\\s+not\\s+a\\s+member\\s+of\\s+\"([^\"]+)\"",
+      "confidence": "MEDIUM",
+      "description": "结构体/联合体成员不存在 — 可能是芯片型号不匹配",
+      "fix_strategy": "Check if the member name is correct for the target chip. Some peripheral registers differ between F103 and F407. Check the reference manual or the SPL header for the correct field name."
+    },
+    {
+      "id": "too_few_arguments",
+      "regex": "error:\\s*#(?:165|167):\\s*too\\s+few\\s+arguments\\s+in\\s+function\\s+call",
+      "confidence": "HIGH",
+      "description": "函数调用参数不足",
+      "fix_strategy": "Check the function declaration in the header and ensure all required parameters are provided in the call."
+    },
+    {
+      "id": "type_mismatch_argument",
+      "regex": "warning:\\s*#167-D:\\s*argument\\s+of\\s+type\\s+\"[^\"]+\"\\s+is\\s+incompatible",
+      "confidence": "MEDIUM",
+      "description": "函数参数类型不兼容",
+      "fix_strategy": "Cast the argument to the expected type, or change the argument variable type to match the function parameter."
+    },
+    {
+      "id": "unknown_register",
+      "regex": "error:\\s*#20:\\s*identifier\\s+\"(RCC_\\w+|GPIO_\\w+|USART_\\w+|TIM_\\w+|SPI_\\w+|I2C_\\w+|ADC_\\w+|DMA_\\w+)\"\\s+is\\s+undefined",
+      "confidence": "HIGH",
+      "description": "外设寄存器/宏未定义 — 可能是芯片型号 define 不正确",
+      "fix_strategy": "Check the preprocessor defines in the project. For F103, ensure STM32F10X_MD or STM32F10X_HD is defined. For F407, ensure STM32F40_41xxx is defined. Add the correct define to the .uvprojx VariousControls/Define section."
+    },
+    {
+      "id": "missing_return",
+      "regex": "warning:\\s*#940-D:\\s*missing\\s+return\\s+statement",
+      "confidence": "HIGH",
+      "description": "非 void 函数缺少 return 语句",
+      "fix_strategy": "Add a return statement at the end of the function."
+    }
+  ],
+
+  "fix_helpers": {
+    "add_include": {
+      "description": "Add #include directive to a source file",
+      "action": "Insert #include <HEADER> at the top of FILE after existing includes"
+    },
+    "add_define": {
+      "description": "Add preprocessor define to project",
+      "action": "Update VariousControls/Define in .uvprojx"
+    },
+    "add_include_path": {
+      "description": "Add include directory to project",
+      "action": "Update VariousControls/IncludePath in .uvprojx"
+    },
+    "add_source_file": {
+      "description": "Add a .c source file to the project group",
+      "action": "Copy file to project and add to Groups in .uvprojx"
+    },
+    "fix_syntax": {
+      "description": "Fix simple syntax error at specific line",
+      "action": "Edit the source file at the error line to fix missing semicolon/brace"
+    },
+    "remove_dead_code": {
+      "description": "Remove unused variable or function",
+      "action": "Delete the declaration or definition"
+    }
+  }
+}

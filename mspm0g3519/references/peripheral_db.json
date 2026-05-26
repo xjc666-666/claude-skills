@@ -1,0 +1,138 @@
+{
+  "UART": {
+    "module_path": "/ti/driverlib/UART",
+    "instances": ["UART0", "UART1", "UART2", "UART3", "UART4"],
+    "instance_count": 5,
+    "pins": {
+      "UART0": {"tx": ["PA10", "PA22", "PA26"], "rx": ["PA11", "PA23", "PA27"]},
+      "UART1": {"tx": ["PB15", "PB4"], "rx": ["PB14", "PB5"]},
+      "UART2": {"tx": ["PA24"], "rx": ["PA25"]},
+      "UART3": {"tx": ["PA28"], "rx": ["PB1"]},
+      "UART4": {"tx": ["PB10", "PA14"], "rx": ["PB11", "PA15"]}
+    },
+    "default_pins": {
+      "UART0": {"tx": "PA10", "rx": "PA11"},
+      "UART1": {"tx": "PB4", "rx": "PB5"},
+      "UART4": {"tx": "PB10", "rx": "PB11"}
+    },
+    "config": {
+      "baud_rates": [9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600],
+      "clk_div_options": ["1", "2", "3", "4", "5", "6", "7", "8"],
+      "interrupts": ["RX", "TX", "TX_COMPLETE"]
+    }
+  },
+  "SPI": {
+    "module_path": "/ti/driverlib/SPI",
+    "instances": ["SPI0", "SPI1"],
+    "instance_count": 2,
+    "pins": {
+      "SPI0": {"sclk": ["PB3", "PA6"], "mosi": ["PB2", "PA5"], "miso": ["PB12", "PA4"]},
+      "SPI1": {"sclk": ["PB16"], "mosi": ["PB15"], "miso": ["PB14"]}
+    },
+    "frame_formats": ["MOTO0", "MOTO1", "MOTO2", "MOTO3", "TI_SYNC"],
+    "directions": ["PICO", "POCI", "BOTH_PHASES"],
+    "fixed_assignments": {
+      "SPI0_OLED": {"peripheral": "SPI0", "sclk": "PB3", "mosi": "PB2",
+        "mode": "PICO", "frame": "MOTO3", "polarity": 1, "phase": 1, "bitrate": 20000000}
+    }
+  },
+  "I2C": {
+    "module_path": "/ti/driverlib/I2C",
+    "instances": ["I2C0", "I2C1"],
+    "instance_count": 2,
+    "pins": {
+      "I2C0": {"sda": ["PA0", "PA11"], "scl": ["PA1", "PA10"]},
+      "I2C1": {"sda": ["PB24"], "scl": ["PB25"]}
+    },
+    "default_pins": {
+      "I2C0": {"sda": "PA0", "scl": "PA1"}
+    },
+    "config": {
+      "speeds": [100000, 400000],
+      "clock_div_options": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+    }
+  },
+  "GPIO": {
+    "module_path": "/ti/driverlib/GPIO",
+    "available_pins": [
+      "PA0","PA1","PA2","PA3","PA4","PA7","PA8","PA9","PA10","PA11",
+      "PA12","PA13","PA14","PA15","PA16","PA17","PA18","PA21","PA22",
+      "PA23","PA24","PA25","PA26","PA27","PA28","PA29","PA30","PA31",
+      "PB0","PB1","PB4","PB5","PB10","PB11","PB12","PB13","PB14",
+      "PB15","PB16","PB17","PB18","PB19","PB21","PB22","PB26",
+      "PB28","PB29","PB30","PB31",
+      "PC0","PC1","PC2","PC3","PC4","PC5","PC6","PC7",
+      "PC10","PC11","PC12","PC13","PC14","PC15"
+    ],
+    "port_groups": {
+      "PORTA": "PA0-PA31",
+      "PORTB": "PB0-PB31",
+      "PORTC": "PC0-PC15"
+    },
+    "resistor_options": ["PULL_UP", "PULL_DOWN", "NONE"],
+    "direction_options": ["OUTPUT", "INPUT"],
+    "polarity_options": ["RISE", "FALL", "BOTH"]
+  },
+  "TIMER": {
+    "module_path": "/ti/driverlib/TIMER",
+    "types": {
+      "TIMG": {"instances": ["TIMG0","TIMG1","TIMG2","TIMG3","TIMG4","TIMG5","TIMG6","TIMG7","TIMG8","TIMG9","TIMG10","TIMG11","TIMG12","TIMG13","TIMG14"], "bits": 16},
+      "TIMA": {"instances": ["TIMA0","TIMA1"], "bits": 16}
+    },
+    "channel_pins": {
+      "TIMG6": {"ccp0": "PA29", "ccp1": "PA30"},
+      "TIMG0": {"ccp0": "PB0", "ccp1": "PB1"}
+    },
+    "config": {
+      "modes": ["PERIODIC_UP", "PERIODIC_DOWN", "PERIODIC_UPDOWN", "ONE_SHOT"],
+      "timerg_clock_source": ["BUSCLK", "MFCLK", "LFCLK", "MFPCLK"]
+    }
+  },
+  "PWM": {
+    "module_path": "/ti/driverlib/PWM",
+    "channel_pins": {
+      "TIMG6": {"ccp0": "PA29", "ccp1": "PA30"},
+      "TIMG0": {"ccp0": "PB0", "ccp1": "PB1"}
+    }
+  },
+  "ADC12": {
+    "module_path": "/ti/driverlib/ADC12",
+    "instances": ["ADC0", "ADC1"],
+    "instance_count": 2,
+    "channels": {
+      "ADC0": {"0": "PA27", "1": "PA26", "2": "PA25", "3": "PA24",
+               "4": "PB17", "5": "PB18", "6": "PB19", "8": "PB21",
+               "10": "PA19", "11": "PA18"},
+      "ADC1": {"0": "PA27", "1": "PA26", "2": "PA25", "3": "PA24",
+               "4": "PB17", "5": "PB18", "6": "PB19", "8": "PB21"}
+    },
+    "config": {
+      "sample_times": ["1us", "2us", "4us", "7us", "13us", "68us", "221us", "867us", "1ms"],
+      "modes": ["single", "sequence"]
+    }
+  },
+  "DAC12": {
+    "module_path": "/ti/driverlib/DAC12",
+    "instances": ["DAC0"],
+    "pins": {"DAC0": {"out": "PA15"}},
+    "config": {
+      "vref_options": ["VDDA", "VEREFP"],
+      "amplifier_options": ["ON", "OFF"]
+    }
+  },
+  "VREF": {
+    "module_path": "/ti/driverlib/VREF",
+    "pins": {"VREFPOS": "PA23", "VREFNEG": "PA21"},
+    "config": {
+      "modes": ["DL_VREF_ENABLE_DISABLE"],
+      "voltages": [1.4, 2.5, 3.3]
+    }
+  },
+  "TRNG": {
+    "module_path": "/ti/driverlib/TRNG",
+    "config": {
+      "clock_dividers": ["DL_TRNG_CLOCK_DIVIDE_8", "DL_TRNG_CLOCK_DIVIDE_16",
+                         "DL_TRNG_CLOCK_DIVIDE_32", "DL_TRNG_CLOCK_DIVIDE_64"]
+    }
+  }
+}

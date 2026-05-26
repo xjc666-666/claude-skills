@@ -1,0 +1,157 @@
+{
+  "OLED": {
+    "bsp": "SPI0_OLED",
+    "bsp_files": ["spi0_oled.c", "spi0_oled.h", "spi0_oledfont.h", "oledfont_bmp.h"],
+    "syscfg_modules": ["GPIO.OLED", "SPI.SPI_0"],
+    "hardware_fixed": true,
+    "in_template": true,
+    "description": "SPI0 驱动的 SSD1306 OLED 显示屏（模板内建）",
+    "init_call": "OLED_Init()",
+    "add_to_bsp_h": "#include \"spi0_oled.h\""
+  },
+  "delay": {
+    "bsp": "delay",
+    "bsp_files": ["delay.c", "delay.h"],
+    "syscfg_modules": [],
+    "hardware_fixed": false,
+    "in_template": true,
+    "description": "毫秒/微秒延时函数（模板内建）",
+    "init_call": null,
+    "add_to_bsp_h": "#include \"delay.h\""
+  },
+  "UART": {
+    "bsp": "UART0",
+    "bsp_files": ["uart0.c", "uart0.h"],
+    "syscfg_modules": ["UART.UART_0"],
+    "hardware_fixed": false,
+    "description": "UART 串口（默认 UART0: PA10=TX, PA11=RX）",
+    "init_call": "uart0_init({baud})",
+    "add_to_bsp_h": "#include \"UART0/uart0.h\""
+  },
+  "printf": {
+    "bsp": "UART0",
+    "bsp_files": ["uart0.c", "uart0.h"],
+    "syscfg_modules": ["UART.UART_0"],
+    "hardware_fixed": false,
+    "description": "printf 重定向到 UART0",
+    "requires_redirect": true
+  },
+  "ADC": {
+    "bsp": "ADC0",
+    "bsp_files": ["adc0.c", "adc0.h"],
+    "syscfg_modules": ["ADC12.ADC0"],
+    "hardware_fixed": false,
+    "description": "ADC 模数转换（默认 ADC0）",
+    "init_call": "adc0_init()",
+    "add_to_bsp_h": "#include \"ADC0/adc0.h\""
+  },
+  "PWM_RGB": {
+    "bsp": "TimerG6_PWM_RGB",
+    "bsp_files": ["timerG6_pwm_rgb.c", "timerG6_pwm_rgb.h"],
+    "syscfg_modules": ["PWM.TimerG6_PWM"],
+    "hardware_fixed": false,
+    "description": "TIMG6 PWM 驱动 RGB LED（PA29=红色, PA30=蓝色）",
+    "init_call": "timerg6_pwm_rgb_init()",
+    "add_to_bsp_h": "#include \"TimerG6_PWM_RGB/timerG6_pwm_rgb.h\""
+  },
+  "LED": {
+    "bsp": "LED",
+    "bsp_files": ["led.c", "led.h"],
+    "syscfg_modules": ["GPIO.LED"],
+    "hardware_fixed": false,
+    "description": "GPIO LED 控制",
+    "init_call": "led_init()",
+    "add_to_bsp_h": "#include \"LED/led.h\""
+  },
+  "KEY": {
+    "bsp": "KEY",
+    "bsp_files": ["key.c", "key.h"],
+    "syscfg_modules": ["GPIO.key"],
+    "hardware_fixed": false,
+    "description": "按键输入（PB31, 下降沿中断, 上拉）",
+    "init_call": "key_init()",
+    "add_to_bsp_h": "#include \"KEY/key.h\""
+  },
+  "Keyboard": {
+    "bsp": "KeyBoard",
+    "bsp_files": ["keyboard.c", "keyboard.h"],
+    "syscfg_modules": ["GPIO.keyboard"],
+    "hardware_fixed": true,
+    "description": "矩阵键盘（4x4，行=PB6/7/8/9，列=PB20/24/25/27）",
+    "init_call": "keyboard_init()",
+    "add_to_bsp_h": "#include \"KeyBoard/keyboard.h\""
+  },
+  "TimerA1": {
+    "bsp": "TimerA1",
+    "bsp_files": ["TimerA1.c", "TimerA1.h"],
+    "syscfg_modules": ["TIMER.TimerA1"],
+    "hardware_fixed": false,
+    "description": "TIMA1 100us 周期定时器",
+    "init_call": "TimerA1_init()",
+    "add_to_bsp_h": "#include \"TimerA1/TimerA1.h\""
+  },
+  "I2C": {
+    "bsp": "MYI2C1",
+    "bsp_files": ["myi2c.c", "myi2c.h"],
+    "syscfg_modules": ["I2C.I2C_0"],
+    "hardware_fixed": false,
+    "description": "I2C0 软件 I2C（SDA=PA0, SCL=PA1），用于 AT24C02 EEPROM",
+    "init_call": "MyI2C_Init()",
+    "add_to_bsp_h": "#include \"MYI2C1/myi2c.h\""
+  },
+  "SPI_Flash": {
+    "bsp": "W25Q64",
+    "bsp_files": ["w25q64.c", "w25q64.h"],
+    "syscfg_modules": ["SPI.SPI_1", "GPIO.W25Q64"],
+    "hardware_fixed": false,
+    "description": "W25Q64 SPI Flash（通过 SPI1: PB16=SCLK, PB15=MOSI, PB14=MISO, PB13=CS）",
+    "init_call": "W25Q64_init()",
+    "add_to_bsp_h": "#include \"W25Q64/w25q64.h\""
+  },
+  "IMU": {
+    "bsp": "IMU",
+    "bsp_files": ["IMU/IMU.c", "IMU/IMU.h", "basic_read_reg.c"],
+    "subdirs": ["IMU", "ICM45686"],
+    "syscfg_modules": ["GPIO.IMU", "SPI.SPI_1"],
+    "hardware_fixed": false,
+    "description": "ICM-45686 IMU 传感器（通过 SPI1, PB12=CS）",
+    "init_call": "IMU_Init()",
+    "add_to_bsp_h": "#include \"IMU/IMU/IMU.h\""
+  },
+  "BUZZER": {
+    "bsp": "TimerG0_LED_BUZZER",
+    "bsp_files": ["timerG0_led_buzzer.c", "timerG0_led_buzzer.h"],
+    "syscfg_modules": ["PWM.TimerG0_PWM"],
+    "hardware_fixed": false,
+    "description": "TIMG0 PWM 驱动蜂鸣器（PB0, PB1）",
+    "init_call": "timerg0_led_buzzer_init()",
+    "add_to_bsp_h": "#include \"TimerG0_LED_BUZZER/timerG0_led_buzzer.h\""
+  },
+  "DAC": {
+    "bsp": null,
+    "bsp_files": [],
+    "syscfg_modules": ["DAC12"],
+    "hardware_fixed": false,
+    "description": "DAC 数模转换（PA15, VREF=3.3V）",
+    "init_call": null,
+    "add_to_bsp_h": null
+  },
+  "VREF": {
+    "bsp": null,
+    "bsp_files": [],
+    "syscfg_modules": ["VREF"],
+    "hardware_fixed": false,
+    "description": "电压参考（VREFPOS=PA23, VREFNEG=PA21）",
+    "init_call": null,
+    "add_to_bsp_h": null
+  },
+  "TRNG": {
+    "bsp": null,
+    "bsp_files": [],
+    "syscfg_modules": ["TRNG"],
+    "hardware_fixed": false,
+    "description": "真随机数发生器",
+    "init_call": null,
+    "add_to_bsp_h": null
+  }
+}

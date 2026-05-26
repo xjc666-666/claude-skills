@@ -1,0 +1,22 @@
+{
+  "family": "F103",
+  "description": "STM32F103 DMA channel to peripheral request mapping. Each channel is hardwired to 1-3 peripherals. For high-density devices.",
+  "mappings": [
+    {"dma": 1, "channel": 1, "peripherals": ["ADC1", "TIM2_CH3", "TIM4_CH1"]},
+    {"dma": 1, "channel": 2, "peripherals": ["SPI1_RX", "USART3_TX", "TIM1_CH1"]},
+    {"dma": 1, "channel": 3, "peripherals": ["SPI1_TX", "USART3_RX", "TIM1_CH2"]},
+    {"dma": 1, "channel": 4, "peripherals": ["SPI2_RX", "USART1_TX", "I2C2_TX"]},
+    {"dma": 1, "channel": 5, "peripherals": ["SPI2_TX", "USART1_RX", "I2C2_RX"]},
+    {"dma": 1, "channel": 6, "peripherals": ["USART2_RX", "I2C1_TX", "TIM1_CH3_TRIG"]},
+    {"dma": 1, "channel": 7, "peripherals": ["USART2_TX", "I2C1_RX", "TIM2_UP"]},
+    {"dma": 2, "channel": 1, "peripherals": ["SPI3_RX", "TIM5_CH4_TRIG", "TIM8_UP"]},
+    {"dma": 2, "channel": 2, "peripherals": ["SPI3_TX", "TIM5_CH3_UP", "TIM8_CH1"]},
+    {"dma": 2, "channel": 3, "peripherals": ["TIM8_CH2", "TIM5_CH2"]},
+    {"dma": 2, "channel": 4, "peripherals": ["TIM5_CH1_TRIG", "TIM8_CH3"]},
+    {"dma": 2, "channel": 5, "peripherals": ["ADC3", "TIM5_UP", "TIM8_CH4_TRIG"]}
+  ],
+  "controllers": {
+    "DMA1": {"base_addr": "0x40020000", "channels": 7},
+    "DMA2": {"base_addr": "0x40020400", "channels": 5}
+  }
+}

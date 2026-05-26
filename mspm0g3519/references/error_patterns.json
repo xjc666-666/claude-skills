@@ -1,0 +1,203 @@
+{
+  "patterns": [
+    {
+      "id": "syscfg_not_generated",
+      "regex": "fatal error: ['\"]ti_msp_dl_config\\\\.h['\"] file not found",
+      "confidence": "HIGH",
+      "fix_strategy": "run_syscfg",
+      "description": "SysConfig 生成的配置文件缺失"
+    },
+    {
+      "id": "dl_init_undefined",
+      "regex": "Undefined symbol SYSCFG_DL_init",
+      "confidence": "HIGH",
+      "fix_strategy": "syscfg_not_run",
+      "description": "SYSCFG_DL_init 未定义，需要运行 syscfg 生成"
+    },
+    {
+      "id": "undeclared_identifier",
+      "regex": "use of undeclared identifier ['\"]([^'\"]+)['\"]",
+      "confidence": "HIGH",
+      "fix_strategy": "mspm0_identifier",
+      "description": "未声明的标识符"
+    },
+    {
+      "id": "missing_dl_header",
+      "regex": "fatal error: ['\"](dl_[^'\"]+\\\\.h)['\"] file not found",
+      "confidence": "HIGH",
+      "fix_strategy": "dl_header_path",
+      "description": "DriverLib 头文件找不到"
+    },
+    {
+      "id": "dl_function_undefined",
+      "regex": "Undefined symbol (DL_[A-Za-z0-9_]+)",
+      "confidence": "HIGH",
+      "fix_strategy": "missing_driverlib_source",
+      "description": "DL API 函数未定义，缺少 DriverLib 源文件"
+    },
+    {
+      "id": "implicit_function_decl",
+      "regex": "implicit declaration of function ['\"]([^'\"]+)['\"]",
+      "confidence": "HIGH",
+      "fix_strategy": "add_include",
+      "description": "隐式函数声明"
+    },
+    {
+      "id": "unknown_typedef_u8",
+      "regex": "unknown type name ['\"]u8['\"]",
+      "confidence": "HIGH",
+      "fix_strategy": "ensure_bsp_h",
+      "description": "u8 类型未定义（需包含 bsp.h）"
+    },
+    {
+      "id": "unknown_typedef_u16",
+      "regex": "unknown type name ['\"]u16['\"]",
+      "confidence": "HIGH",
+      "fix_strategy": "ensure_bsp_h",
+      "description": "u16 类型未定义（需包含 bsp.h）"
+    },
+    {
+      "id": "missing_semicolon",
+      "regex": "expected ['\"];['\"]",
+      "confidence": "MEDIUM",
+      "fix_strategy": "insert_semicolon",
+      "description": "缺少分号"
+    },
+    {
+      "id": "redefinition",
+      "regex": "redefinition of ['\"]([^'\"]+)['\"]",
+      "confidence": "MEDIUM",
+      "fix_strategy": "redefinition_fix",
+      "description": "符号重复定义"
+    },
+    {
+      "id": "not_member_of_struct",
+      "regex": "no member named ['\"]([^'\"]+)['\"] in",
+      "confidence": "MEDIUM",
+      "fix_strategy": "api_version_check",
+      "description": "结构体成员不存在，可能是 API 版本问题"
+    },
+    {
+      "id": "incompatible_pointer",
+      "regex": "incompatible pointer types",
+      "confidence": "MEDIUM",
+      "fix_strategy": "cast_or_fix_type",
+      "description": "不兼容的指针类型"
+    },
+    {
+      "id": "too_few_args",
+      "regex": "too few arguments to function call",
+      "confidence": "MEDIUM",
+      "fix_strategy": "check_dl_api",
+      "description": "函数调用参数不足"
+    },
+    {
+      "id": "too_many_args",
+      "regex": "too many arguments to function call",
+      "confidence": "MEDIUM",
+      "fix_strategy": "check_dl_api",
+      "description": "函数调用参数过多"
+    },
+    {
+      "id": "linker_scatter",
+      "regex": "error: L6[0-9]+[A-Z]?:\\s*(.+)",
+      "confidence": "MEDIUM",
+      "fix_strategy": "linker_error",
+      "description": "链接器错误"
+    }
+  ],
+  "fix_strategies": {
+    "run_syscfg": {
+      "description": "SysConfig 未运行，需要重新生成 ti_msp_dl_config.c/h",
+      "action": "Run syscfg_generator.py to generate configuration files"
+    },
+    "syscfg_not_run": {
+      "description": "SYSCFG_DL_init 未定义，说明 syscfg.bat 预构建步骤未执行",
+      "action": "Run syscfg_generator.py before compiling"
+    },
+    "mspm0_identifier": {
+      "description": "搜索标识符来源：1) ti_msp_dl_config.h, 2) driverlib dl_*.h, 3) BSP 头文件",
+      "auto_fix": true,
+      "action": "Find identifier in project headers, add corresponding #include"
+    },
+    "dl_header_path": {
+      "description": "DriverLib 头文件找不到，检查 IncludePath",
+      "action": "Check that ..\\Source is in .uvprojx include paths; if file missing, re-run driverlib_manager.py"
+    },
+    "missing_driverlib_source": {
+      "description": "DL API 函数未定义，需将对应 dl_*.c 加入 Keil Source 组",
+      "action": "Add missing .c file to .uvprojx Source group using uvprojx_modifier.py"
+    },
+    "add_include": {
+      "description": "隐式函数声明，需添加 #include",
+      "auto_fix": true,
+      "action": "Search project headers for function declaration, add #include"
+    },
+    "ensure_bsp_h": {
+      "description": "u8/u16 类型在 bsp.h 中定义，确保已包含",
+      "auto_fix": true,
+      "action": "Add or uncomment #include \"bsp.h\" at top of file"
+    },
+    "insert_semicolon": {
+      "description": "指定行缺少分号",
+      "auto_fix": true,
+      "action": "Insert ';' at end of indicated line"
+    },
+    "redefinition_fix": {
+      "description": "符号重复定义，通常需要加 static 或移到 .c",
+      "action": "Check if the redefined symbol is in a header file; if so, suggest adding 'static' or moving to .c"
+    },
+    "api_version_check": {
+      "description": "DL API 版本不匹配",
+      "action": "Check that the DriverLib from SDK matches the SDK version expected by SysConfig"
+    },
+    "cast_or_fix_type": {
+      "description": "指针类型不兼容",
+      "action": "Add explicit cast or fix the variable type"
+    },
+    "check_dl_api": {
+      "description": "DL 函数调用参数数量不匹配",
+      "action": "Check the DL API function signature in the driverlib header, correct argument count"
+    },
+    "linker_error": {
+      "description": "链接器错误",
+      "action": "Check scatter file (.sct) configuration matches MSPM0G3519 memory layout"
+    }
+  },
+  "dl_api_header_map": {
+    "DL_GPIO": "dl_gpio.h",
+    "DL_UART": "dl_uart.h",
+    "DL_SPI": "dl_spi.h",
+    "DL_I2C": "dl_i2c.h",
+    "DL_ADC12": "dl_adc12.h",
+    "DL_DAC12": "dl_dac12.h",
+    "DL_Timer": "dl_timer.h",
+    "DL_TimerA": "dl_timera.h",
+    "DL_TimerG": "dl_timerg.h",
+    "DL_SYSCTL": "dl_sysctl_mspm0gx51x.h",
+    "DL_Common": "dl_common.h",
+    "DL_TRNG": "dl_trng.h",
+    "DL_VREF": "dl_vref.h",
+    "DL_DMA": "dl_dma.h",
+    "DL_FlashCTL": "dl_flashctl.h",
+    "DL_Interrupt": "dl_interrupt.h"
+  },
+  "dl_source_map": {
+    "dl_gpio.h": "dl_gpio.c",
+    "dl_uart.h": "dl_uart.c",
+    "dl_spi.h": "dl_spi.c",
+    "dl_i2c.h": "dl_i2c.c",
+    "dl_adc12.h": "dl_adc12.c",
+    "dl_dac12.h": "dl_dac12.c",
+    "dl_timer.h": "dl_timer.c",
+    "dl_timera.h": "dl_timera.c",
+    "dl_timerg.h": "dl_timerg.c",
+    "dl_sysctl_mspm0gx51x.h": "dl_sysctl_mspm0gx51x.c",
+    "dl_common.h": "dl_common.c",
+    "dl_trng.h": "dl_trng.c",
+    "dl_vref.h": "dl_vref.c",
+    "dl_dma.h": "dl_dma.c",
+    "dl_flashctl.h": "dl_flashctl.c",
+    "dl_interrupt.h": "dl_interrupt.c"
+  }
+}
