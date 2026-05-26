@@ -44,9 +44,9 @@ cp -r claude-skills/mspm0g3519 ~/.claude/skills/
 
 ---
 
-## 使用
+## 使用示例
 
 ```bash
-/stm32-keil 创建 LED 闪烁工程
-/mspm0g3519 创建 OLED+键盘工程
+/stm32-keil 创建 LED 闪烁工程（工程需求）
+/mspm0g3519 创建 OLED+键盘工程（工程需求）
 ```
