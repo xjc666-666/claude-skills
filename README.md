@@ -22,7 +22,7 @@ TI MSPM0G3519 (Cortex-M0+) SysConfig 驱动开发全流程。
 
 | 项目 | 说明 |
 |------|------|
-| 芯片 | MSPM0G3519 (LQFP-80) |
+| 芯片 | MSPM0G3519 (LQFP-80) 启是科技开发板|
 | 触发 | `/mspm0g3519` |
 | 烧录 | CMSIS-DAP |
 
