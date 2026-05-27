@@ -41,6 +41,7 @@ cp -r claude-skills/mspm0g3519 ~/.claude/skills/
 - Keil MDK-ARM v5
 - stm32-keil: 对应芯片 DFP
 - mspm0g3519: MSPM0 SDK 2.08 + SysConfig 1.25.0 + TI DFP
+- PS：如果自动搜寻没搜到安装路径，请告诉你的Agent实际安装路径（SDK,Keil,sysconfig,DFP）
 
 ---
 
